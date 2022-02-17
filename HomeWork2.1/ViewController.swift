@@ -1,5 +1,9 @@
-// Я захардкодил ширину лейбла, отображающего значение слайдера :(
+// Я захардкодил ширину лейбла, отображающего значение слайдера, ибо при изменении значений он расширяется и сужается :c
 
+/*
+ COLORREF C = RGB(r, g, b)
+ r, g и b — интенсивность (в диапазоне от 0 до 255) соответственно красной, зелёной и синей составляющих определяемого цвета C. То есть ярко-синий цвет может быть определён как (0,0,255), красный как (255,0,0), ярко-фиолетовый — (255,0,255), чёрный — (0,0,0), а белый — (255,255,255) (wikipedia)
+ */
 import UIKit
 
 // Plan:
@@ -26,13 +30,15 @@ class ViewController: UIViewController {
     @IBOutlet var greenSliderCounter: UILabel!
     @IBOutlet var blueSliderCounter: UILabel!
     
+    // MARK: - Properties
+    
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
     }
-    
     
     // MARK: - Methods
     func setupUI() {
@@ -71,16 +77,26 @@ class ViewController: UIViewController {
     
     // MARK: - Action
     @IBAction func redSliderAction() {
-        redSliderCounter.text = String(redSlider.value)
+        let redSliderValue = redSlider.value
+        let redSliderRoundedValue = round(redSliderValue * 100) / 100
+        
+        redSliderCounter.text = String(redSliderRoundedValue)
+        rgbView.backgroundColor = redSlider.minimumTrackTintColor
     }
     
     @IBAction func greenSliderAction() {
-        greenSliderCounter.text = String(greenSlider.value)
-
+        let greenSliderValue = greenSlider.value
+        let greenSliderValueRounded = round(greenSliderValue * 100 ) / 100
+        
+        greenSliderCounter.text = String(greenSliderValueRounded)
+        rgbView.backgroundColor = greenSlider.minimumTrackTintColor
     }
     
     @IBAction func blueSliderAction() {
-        blueSliderCounter.text = String(blueSlider.value)
+        let blueSliderValue = blueSlider.value
+        let blueSliderRoundedValue = round(blueSliderValue * 100) / 100
+        
+        blueSliderCounter.text = String(blueSliderRoundedValue)
+        rgbView.backgroundColor = blueSlider.minimumTrackTintColor
     }
 }
-
