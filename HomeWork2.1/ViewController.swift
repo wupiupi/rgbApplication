@@ -33,15 +33,17 @@ class ViewController: UIViewController {
     // MARK: - Properties
     
     
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupUI()
+        
     }
     
     // MARK: - Methods
     func setupUI() {
+        
         rgbView.layer.cornerRadius = 15
 
         sliderNameDesign()
@@ -50,6 +52,7 @@ class ViewController: UIViewController {
     }
     
     func sliderNameDesign() {
+        
         redSliderName.layer.masksToBounds = true
         greenSliderName.layer.masksToBounds = true
         blueSliderName.layer.masksToBounds = true
@@ -60,6 +63,7 @@ class ViewController: UIViewController {
     }
 
     func sliderCounterDesign() {
+        
         redSliderCounter.layer.masksToBounds = true
         greenSliderCounter.layer.masksToBounds = true
         blueSliderCounter.layer.masksToBounds = true
@@ -70,33 +74,60 @@ class ViewController: UIViewController {
     }
     
     func sliderDesign() {
+        
         redSlider.layer.cornerRadius = 15
         greenSlider.layer.cornerRadius = 15
         blueSlider.layer.cornerRadius = 15
     }
     
+    func addColor(_ color1: UIColor, with color2: UIColor) -> UIColor {
+        var (redOne, greenOne, blueOne, alphaOne) = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
+        var (redTwo, greenTwo, blueTwo, alphaTwo) = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
+
+        color1.getRed(&redOne, green: &greenOne, blue: &blueOne, alpha: &alphaOne)
+        color2.getRed(&redTwo, green: &greenTwo, blue: &blueTwo, alpha: &alphaTwo)
+
+        // add the components, but don't let them go above 1.0
+        return UIColor(red: min(redOne + redTwo, 1),
+                       green: min(greenOne + greenTwo, 1),
+                       blue: min(blueOne + blueTwo, 1),
+                       alpha: (alphaOne + alphaTwo) / 2)
+    }
+    
     // MARK: - Action
     @IBAction func redSliderAction() {
-        let redSliderValue = redSlider.value
-        let redSliderRoundedValue = round(redSliderValue * 100) / 100
         
+        let redSliderRoundedValue = round(redSlider.value * 100) / 100
+        let redViewColor = UIColor(red: CGFloat(redSlider.value),
+                                 green: 0,
+                                 blue: 0,
+                                 alpha: 1)
+
         redSliderCounter.text = String(redSliderRoundedValue)
-        rgbView.backgroundColor = redSlider.minimumTrackTintColor
+        rgbView.backgroundColor = redViewColor
     }
     
     @IBAction func greenSliderAction() {
-        let greenSliderValue = greenSlider.value
-        let greenSliderValueRounded = round(greenSliderValue * 100 ) / 100
+        
+        let greenSliderValueRounded = round(greenSlider.value * 100 ) / 100
+        let greenViewColor = UIColor(red: 0,
+                                 green: CGFloat(greenSlider.value),
+                                 blue: 0,
+                                 alpha: 1)
         
         greenSliderCounter.text = String(greenSliderValueRounded)
-        rgbView.backgroundColor = greenSlider.minimumTrackTintColor
+        rgbView.backgroundColor = greenViewColor
     }
     
     @IBAction func blueSliderAction() {
-        let blueSliderValue = blueSlider.value
-        let blueSliderRoundedValue = round(blueSliderValue * 100) / 100
+        
+        let blueSliderRoundedValue = round(blueSlider.value * 100) / 100
+        let blueViewColor = UIColor(red: 0,
+                                   green: 0,
+                                    blue: CGFloat(blueSlider.value),
+                                   alpha: 1)
         
         blueSliderCounter.text = String(blueSliderRoundedValue)
-        rgbView.backgroundColor = blueSlider.minimumTrackTintColor
+        rgbView.backgroundColor = blueViewColor
     }
 }
