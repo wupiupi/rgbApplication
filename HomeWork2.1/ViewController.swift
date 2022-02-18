@@ -1,9 +1,5 @@
 // Я захардкодил ширину лейбла, отображающего значение слайдера, ибо при изменении значений он расширяется и сужается :c
 
-/*
- COLORREF C = RGB(r, g, b)
- r, g и b — интенсивность (в диапазоне от 0 до 255) соответственно красной, зелёной и синей составляющих определяемого цвета C. То есть ярко-синий цвет может быть определён как (0,0,255), красный как (255,0,0), ярко-фиолетовый — (255,0,255), чёрный — (0,0,0), а белый — (255,255,255) (wikipedia)
- */
 import UIKit
 
 // Plan:
@@ -30,16 +26,19 @@ class ViewController: UIViewController {
     @IBOutlet var greenSliderCounter: UILabel!
     @IBOutlet var blueSliderCounter: UILabel!
     
-    // MARK: - Properties
     
+    // MARK: - Properties
+    var redSliderValue: Float = 0
+    var greenSliderValue: Float = 0
+    var blueSliderValue: Float = 0
     
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
     }
+    
     
     // MARK: - Methods
     func setupUI() {
@@ -80,27 +79,16 @@ class ViewController: UIViewController {
         blueSlider.layer.cornerRadius = 15
     }
     
-    func addColor(_ color1: UIColor, with color2: UIColor) -> UIColor {
-        var (redOne, greenOne, blueOne, alphaOne) = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
-        var (redTwo, greenTwo, blueTwo, alphaTwo) = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
-
-        color1.getRed(&redOne, green: &greenOne, blue: &blueOne, alpha: &alphaOne)
-        color2.getRed(&redTwo, green: &greenTwo, blue: &blueTwo, alpha: &alphaTwo)
-
-        // add the components, but don't let them go above 1.0
-        return UIColor(red: min(redOne + redTwo, 1),
-                       green: min(greenOne + greenTwo, 1),
-                       blue: min(blueOne + blueTwo, 1),
-                       alpha: (alphaOne + alphaTwo) / 2)
-    }
     
     // MARK: - Action
     @IBAction func redSliderAction() {
         
         let redSliderRoundedValue = round(redSlider.value * 100) / 100
-        let redViewColor = UIColor(red: CGFloat(redSlider.value),
-                                 green: 0,
-                                 blue: 0,
+        redSliderValue = redSlider.value
+        
+        let redViewColor = UIColor(red: CGFloat(redSliderValue),
+                                   green: CGFloat(greenSliderValue),
+                                   blue: CGFloat(blueSliderValue),
                                  alpha: 1)
 
         redSliderCounter.text = String(redSliderRoundedValue)
@@ -110,24 +98,30 @@ class ViewController: UIViewController {
     @IBAction func greenSliderAction() {
         
         let greenSliderValueRounded = round(greenSlider.value * 100 ) / 100
-        let greenViewColor = UIColor(red: 0,
-                                 green: CGFloat(greenSlider.value),
-                                 blue: 0,
+        greenSliderCounter.text = String(greenSliderValueRounded)
+        
+        greenSliderValue = greenSlider.value
+        
+        let greenViewColor = UIColor(red: CGFloat(redSliderValue),
+                                 green: CGFloat(greenSliderValue),
+                                 blue: CGFloat(blueSliderValue),
                                  alpha: 1)
         
-        greenSliderCounter.text = String(greenSliderValueRounded)
         rgbView.backgroundColor = greenViewColor
     }
     
     @IBAction func blueSliderAction() {
         
         let blueSliderRoundedValue = round(blueSlider.value * 100) / 100
-        let blueViewColor = UIColor(red: 0,
-                                   green: 0,
-                                    blue: CGFloat(blueSlider.value),
+        blueSliderCounter.text = String(blueSliderRoundedValue)
+        
+        blueSliderValue = blueSlider.value
+        
+        let blueViewColor = UIColor(red: CGFloat(redSliderValue),
+                                   green: CGFloat(greenSliderValue),
+                                    blue: CGFloat(blueSliderValue),
                                    alpha: 1)
         
-        blueSliderCounter.text = String(blueSliderRoundedValue)
         rgbView.backgroundColor = blueViewColor
     }
 }
