@@ -79,48 +79,58 @@ class ViewController: UIViewController {
         blueSlider.layer.cornerRadius = 15
     }
     
+    func getColor(red: Float, green: Float, blue: Float) -> UIColor {
+        return UIColor(red: CGFloat(red),
+                       green: CGFloat(green),
+                       blue: CGFloat(blue),
+                       alpha: 1)
+    }
+    
+    func roundValueByHundredths(value: Float) -> Float {
+        let roundedValue = round(value * 100) / 100
+        return roundedValue
+    }
+    
     
     // MARK: - Action
     @IBAction func redSliderAction() {
         
-        let redSliderRoundedValue = round(redSlider.value * 100) / 100
         redSliderValue = redSlider.value
         
-        let redViewColor = UIColor(red: CGFloat(redSliderValue),
-                                   green: CGFloat(greenSliderValue),
-                                   blue: CGFloat(blueSliderValue),
-                                 alpha: 1)
-
+        let redSliderRoundedValue = roundValueByHundredths(value: redSliderValue)
         redSliderCounter.text = String(redSliderRoundedValue)
+
+        let redViewColor = getColor(red: redSliderValue,
+                                     green: greenSliderValue,
+                                     blue: blueSliderValue)
+
         rgbView.backgroundColor = redViewColor
     }
     
     @IBAction func greenSliderAction() {
         
-        let greenSliderValueRounded = round(greenSlider.value * 100 ) / 100
-        greenSliderCounter.text = String(greenSliderValueRounded)
-        
         greenSliderValue = greenSlider.value
         
-        let greenViewColor = UIColor(red: CGFloat(redSliderValue),
-                                 green: CGFloat(greenSliderValue),
-                                 blue: CGFloat(blueSliderValue),
-                                 alpha: 1)
+        let greenSliderValueRounded = roundValueByHundredths(value: greenSliderValue)
+        greenSliderCounter.text = String(greenSliderValueRounded)
+            
+        let greenViewColor = getColor(red: redSliderValue,
+                                       green: greenSliderValue,
+                                       blue: blueSliderValue)
         
         rgbView.backgroundColor = greenViewColor
     }
     
     @IBAction func blueSliderAction() {
         
-        let blueSliderRoundedValue = round(blueSlider.value * 100) / 100
-        blueSliderCounter.text = String(blueSliderRoundedValue)
-        
         blueSliderValue = blueSlider.value
         
-        let blueViewColor = UIColor(red: CGFloat(redSliderValue),
-                                   green: CGFloat(greenSliderValue),
-                                    blue: CGFloat(blueSliderValue),
-                                   alpha: 1)
+        let blueSliderRoundedValue = roundValueByHundredths(value: blueSliderValue)
+        blueSliderCounter.text = String(blueSliderRoundedValue)
+            
+        let blueViewColor = getColor(red: redSliderValue,
+                                      green: greenSliderValue,
+                                      blue: blueSliderRoundedValue)
         
         rgbView.backgroundColor = blueViewColor
     }
