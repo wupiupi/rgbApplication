@@ -1,13 +1,13 @@
-// Я захардкодил ширину лейбла, отображающего значение слайдера, ибо при изменении значений он расширяется и сужается :c
-
 import UIKit
 
-// Plan:
-// 1. IBOutlets
-// 2. Properties
-// 3. Life Cycle
-// 4. Methods
-// 5. Action
+/*
+ Plan:
+ 1. IBOutlets
+ 2. Properties
+ 3. Life Cycle
+ 4. Methods
+ 5. Action
+ */
 
 class ViewController: UIViewController {
 
@@ -27,16 +27,12 @@ class ViewController: UIViewController {
     @IBOutlet var blueSliderCounter: UILabel!
     
     
-    // MARK: - Properties
-    var redSliderValue: Float = 0
-    var greenSliderValue: Float = 0
-    var blueSliderValue: Float = 0
-    
-    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setColor()
+        setValue(for: redSliderCounter, greenSliderCounter, blueSliderCounter)
     }
     
     
@@ -79,53 +75,36 @@ class ViewController: UIViewController {
         blueSlider.layer.cornerRadius = 15
     }
     
-    func getColor() -> UIColor {
-        return UIColor(red: CGFloat(redSliderValue),
-                       green: CGFloat(greenSliderValue),
-                       blue: CGFloat(blueSliderValue),
-                       alpha: 1)
+    private func roundValue(from slider: UISlider) -> String {
+        String(format: "%.2f", slider.value)
     }
     
-    func roundValueByHundredths(value: Float) -> Float {
-        let roundedValue = round(value * 100) / 100
-        return roundedValue
+    private func setColor() {
+        rgbView.backgroundColor = UIColor(red: CGFloat(redSlider.value),
+                                          green: CGFloat(greenSlider.value),
+                                          blue: CGFloat(blueSlider.value),
+                                          alpha: 1)
     }
     
+    private func setValue(for labels: UILabel...) {
+        labels.forEach { label in
+            switch label.tag {
+            case 0: redSliderCounter.text = roundValue(from: redSlider)
+            case 1: greenSliderCounter.text = roundValue(from: greenSlider)
+            case 2: blueSliderCounter.text = roundValue(from: blueSlider)
+            default: break
+            }
+        }
+    }
     
     // MARK: - Action
-    @IBAction func redSliderAction() {
-        
-        redSliderValue = redSlider.value
-        
-        let redSliderRoundedValue = roundValueByHundredths(value: redSliderValue)
-        redSliderCounter.text = String(redSliderRoundedValue)
-
-        let redViewColor = getColor()
-
-        rgbView.backgroundColor = redViewColor
-    }
-    
-    @IBAction func greenSliderAction() {
-        
-        greenSliderValue = greenSlider.value
-        
-        let greenSliderValueRounded = roundValueByHundredths(value: greenSliderValue)
-        greenSliderCounter.text = String(greenSliderValueRounded)
-            
-        let greenViewColor = getColor()
-        
-        rgbView.backgroundColor = greenViewColor
-    }
-    
-    @IBAction func blueSliderAction() {
-        
-        blueSliderValue = blueSlider.value
-        
-        let blueSliderRoundedValue = roundValueByHundredths(value: blueSliderValue)
-        blueSliderCounter.text = String(blueSliderRoundedValue)
-            
-        let blueViewColor = getColor()
-        
-        rgbView.backgroundColor = blueViewColor
+    @IBAction func rgbSlider(_ sender: UISlider) {
+        switch sender.tag {
+        case 0: redSliderCounter.text = roundValue(from: sender)
+        case 1: greenSliderCounter.text = roundValue(from: sender)
+        case 2: blueSliderCounter.text = roundValue(from: sender)
+        default: break
+        }
+        setColor()
     }
 }

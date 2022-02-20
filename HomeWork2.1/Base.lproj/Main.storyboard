@@ -76,14 +76,14 @@
                                                 <nil key="highlightedColor"/>
                                                 <size key="shadowOffset" width="1" height="-2"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6q-xP-Ekz">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6q-xP-Ekz">
                                                 <rect key="frame" x="0.0" y="46.333333333333314" width="40" height="20.333333333333329"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" red="0.57254901960000004" green="0.16862745100000001" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaS-OF-UHK">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaS-OF-UHK">
                                                 <rect key="frame" x="0.0" y="92.666666666666686" width="40" height="20.333333333333329"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -104,25 +104,25 @@
                                                 <color key="minimumTrackTintColor" red="1" green="0.14117647059999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="thumbTintColor" red="0.57254901960000004" green="0.16862745100000001" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
-                                                    <action selector="redSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="anO-ay-y1B"/>
+                                                    <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="M0C-WM-3cz"/>
                                                 </connections>
                                             </slider>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uAd-Rv-cb6">
+                                            <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uAd-Rv-cb6">
                                                 <rect key="frame" x="-2" y="41" width="218" height="32"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
                                                 <color key="thumbTintColor" red="0.57254901960000004" green="0.16862745100000001" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
-                                                    <action selector="greenSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="6ec-rw-s5C"/>
+                                                    <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ige-Sg-WRo"/>
                                                 </connections>
                                             </slider>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="A7o-HK-e3L">
+                                            <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="A7o-HK-e3L">
                                                 <rect key="frame" x="-2" y="82" width="218" height="32"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="minimumTrackTintColor" systemColor="tintColor"/>
                                                 <color key="thumbTintColor" red="0.57254901960000004" green="0.16862745100000001" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
-                                                    <action selector="blueSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="Egt-Da-uJe"/>
+                                                    <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="b2u-E6-HTf"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
@@ -145,13 +145,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="blueSlider" destination="A7o-HK-e3L" id="C5g-mL-yw2"/>
+                        <outlet property="blueSlider" destination="A7o-HK-e3L" id="1p4-Wu-4na"/>
                         <outlet property="blueSliderCounter" destination="VaS-OF-UHK" id="EAx-yR-H2e"/>
                         <outlet property="blueSliderName" destination="oZD-Na-bEU" id="PWf-RV-2st"/>
-                        <outlet property="greenSlider" destination="uAd-Rv-cb6" id="7hq-9k-QWO"/>
+                        <outlet property="greenSlider" destination="uAd-Rv-cb6" id="Rfe-kd-CMi"/>
                         <outlet property="greenSliderCounter" destination="I6q-xP-Ekz" id="B60-uJ-OBp"/>
                         <outlet property="greenSliderName" destination="cwd-0r-wzi" id="fWR-9f-RV6"/>
-                        <outlet property="redSlider" destination="XaI-lO-stz" id="I7g-fy-RT5"/>
+                        <outlet property="redSlider" destination="XaI-lO-stz" id="qik-XZ-OtY"/>
                         <outlet property="redSliderCounter" destination="I1b-ec-OBt" id="C8f-hW-Xun"/>
                         <outlet property="redSliderName" destination="3Qh-Vf-Ct8" id="Xjz-wV-uc6"/>
                         <outlet property="rgbView" destination="zs8-SV-NtM" id="Rku-zV-y2t"/>
