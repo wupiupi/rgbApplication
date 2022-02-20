@@ -79,10 +79,10 @@ class ViewController: UIViewController {
         blueSlider.layer.cornerRadius = 15
     }
     
-    func getColor(red: Float, green: Float, blue: Float) -> UIColor {
-        return UIColor(red: CGFloat(red),
-                       green: CGFloat(green),
-                       blue: CGFloat(blue),
+    func getColor() -> UIColor {
+        return UIColor(red: CGFloat(redSliderValue),
+                       green: CGFloat(greenSliderValue),
+                       blue: CGFloat(blueSliderValue),
                        alpha: 1)
     }
     
@@ -100,9 +100,7 @@ class ViewController: UIViewController {
         let redSliderRoundedValue = roundValueByHundredths(value: redSliderValue)
         redSliderCounter.text = String(redSliderRoundedValue)
 
-        let redViewColor = getColor(red: redSliderValue,
-                                     green: greenSliderValue,
-                                     blue: blueSliderValue)
+        let redViewColor = getColor()
 
         rgbView.backgroundColor = redViewColor
     }
@@ -114,9 +112,7 @@ class ViewController: UIViewController {
         let greenSliderValueRounded = roundValueByHundredths(value: greenSliderValue)
         greenSliderCounter.text = String(greenSliderValueRounded)
             
-        let greenViewColor = getColor(red: redSliderValue,
-                                       green: greenSliderValue,
-                                       blue: blueSliderValue)
+        let greenViewColor = getColor()
         
         rgbView.backgroundColor = greenViewColor
     }
@@ -128,9 +124,7 @@ class ViewController: UIViewController {
         let blueSliderRoundedValue = roundValueByHundredths(value: blueSliderValue)
         blueSliderCounter.text = String(blueSliderRoundedValue)
             
-        let blueViewColor = getColor(red: redSliderValue,
-                                      green: greenSliderValue,
-                                      blue: blueSliderRoundedValue)
+        let blueViewColor = getColor()
         
         rgbView.backgroundColor = blueViewColor
     }
